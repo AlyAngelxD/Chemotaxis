@@ -25,8 +25,8 @@
  	int x, y, bColor;
  	Bacteria() 
  	{
- 		x = 0;
- 		y = 0;
+ 		x = 150;
+ 		y = 150;
  		bColor = 150;
  	}   
  	void move()

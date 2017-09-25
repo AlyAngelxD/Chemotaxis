@@ -1,33 +1,30 @@
- //declare bacteria variables here   
- Bacteria[] minions;
+Clones[] minions;
  void setup()   
  {     
- 	//initialize bacteria variables here
  	size(300,300);   
  	background(0);
- 	minions = new Bacteria[100];
+ 	minions = new Clones[100];
  	for (int i = 0; i < minions.length; i++)
  	{
- 		minions[i] = new Bacteria();
+ 		minions[i] = new Clones();
  	}
  }   
  void draw()   
  {    
- 	//move and show the bacteria   
  	for (int i = 0; i < minions.length; i++)
  	{
  		minions[i].move();
  		minions[i].show();
  	}
  }  
- class Bacteria    
+ class Clones   
  {     
- 	int x, y, bColor;
- 	Bacteria() 
+ 	int x, y, cloneColor;
+ 	Clones() 
  	{
  		x = 150;
  		y = 150;
- 		bColor = 150;
+ 		cloneColor = color(150,150,150);
  	}   
  	void move()
  	{
@@ -36,7 +33,7 @@
  	}
  	void show()
  	{
- 		fill(bColor);
+ 		fill(cloneColor);
  		ellipse(x,y,20,20);
  	}
  }    

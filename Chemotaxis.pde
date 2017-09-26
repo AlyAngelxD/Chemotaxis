@@ -18,6 +18,7 @@ Gru master;
  		minions[i].move();
  		minions[i].show();
  	}
+ 	master.move();
  	master.show();
  }  
  class Clones   
@@ -25,8 +26,8 @@ Gru master;
  	int x, y, cloneColor;
  	Clones() 
  	{
- 		x = 250;
- 		y = 250;
+ 		x = 25;
+ 		y = 25;
  		cloneColor = color(255,215,0);
  	}   
  	void move()
@@ -63,19 +64,49 @@ Gru master;
  	int x, y, gruColor;
  	Gru()
  	{
- 		x = 0;
- 		y = 0;
+ 		x = 250;
+ 		y = 250;
  		gruColor = color(255,195,170);
  	}
  	void move()
  	{
-
+ 		x = x + (int)(Math.random()*3)-1;
+ 		y = y + (int)(Math.random()*3)-1;
  	}
  	void show()
- 	{
+ 	{ 		
+ 		//head
  		fill(gruColor);
  		strokeWeight(1);
  		ellipse(x,y,50,50);
+ 		//eyes
+ 		fill(255);
+ 		strokeWeight(1);
+ 		ellipse(x-10,y-5,15,10);
+ 		ellipse(x+10,y-5,15,10);
+ 		fill(25,25,255);
+ 		ellipse(x-10,y-5,5,5);
+ 		ellipse(x+10,y-5,5,5);
+ 		fill(0);
+ 		ellipse(x-10,y-5,2,2);
+ 		ellipse(x+10,y-5,2,2);
+ 		// noStroke();
+ 		// fill(gruColor);
+ 		// rect(x-20,y-8,x-2,y-8,x-20,y-10,x-2,y-10);
+ 		// rect(x+20,y-8,x+2,y-8,x+20,y-10,x+2,y-10);
+ 		//eyebrows
+ 		stroke(0);
+ 		strokeWeight(2);
+ 		line(x-20,y-10,x-2,y-10);
+ 		line(x+20,y-10,x+2,y-10);
+ 		//mouth
+ 		fill(gruColor);
+ 		strokeWeight(1);
+ 		bezier(x-15,y+10,x,y+20,x,y+20,x+15,y+10);
+ 		//nose
+ 		strokeWeight(1);
+ 		line(x-5,y,x,y+15);
+ 		line(x+5,y,x,y+15);
 
  	}
  }

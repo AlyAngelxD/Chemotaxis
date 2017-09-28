@@ -1,5 +1,6 @@
 Clones[] minions;
 Gru master;
+Banana bob;
  void setup()   
  {     
  	size(500,500);   
@@ -9,6 +10,7 @@ Gru master;
  		minions[i] = new Clones();
  	}
  	master = new Gru();
+ 	bob = new Banana();
  }   
  void draw()   
  {    
@@ -20,6 +22,7 @@ Gru master;
  	}
  	master.move();
  	master.show();
+ 	bob.show();
  }  
  class Clones   
  {     
@@ -64,8 +67,8 @@ Gru master;
  	int x, y, gruColor;
  	Gru()
  	{
- 		x = 250;
- 		y = 250;
+ 		x = (int)(Math.random()*500);
+ 		y = (int)(Math.random()*500);
  		gruColor = color(255,195,170);
  	}
  	void move()
@@ -90,11 +93,6 @@ Gru master;
  		fill(0);
  		ellipse(x-10,y-5,2,2);
  		ellipse(x+10,y-5,2,2);
- 		// noStroke();
- 		// fill(gruColor);
- 		// rect(x-20,y-8,x-2,y-8,x-20,y-10,x-2,y-10);
- 		// rect(x+20,y-8,x+2,y-8,x+20,y-10,x+2,y-10);
- 		//eyebrows
  		stroke(0);
  		strokeWeight(2);
  		line(x-20,y-10,x-2,y-10);
@@ -121,6 +119,11 @@ Gru master;
  	}
  	void show()
  	{
-
+ 		fill(255,255,0);
+ 		strokeWeight(1);
+ 		bezier(x+5,y,x-5,y-35,x+15,y-20,x+15,y);
+ 		bezier(x+5,y,x-5,y+35,x+15,y+20,x+15,y);
+ 		fill(120,60,40);
+ 		ellipse(x+5,y-20,7,7);
  	}
  }

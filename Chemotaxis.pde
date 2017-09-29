@@ -1,9 +1,11 @@
 Clones[] minions;
 Gru master;
 Banana bob;
+boolean bananaThrown = false;
  void setup()   
  {     
  	size(500,500);   
+ 	frameRate(150);
  	minions = new Clones[100];
  	for (int i = 0; i < minions.length; i++)
  	{
@@ -22,7 +24,11 @@ Banana bob;
  	}
  	master.move();
  	master.show();
- 	bob.show();
+ 	if (master.x == minions[0].x)
+ 	{
+ 		bob.show();
+ 		master.x = master.y = bob.x = bob.y = (int)(Math.random()*500);
+ 	}
  }  
  class Clones   
  {     
@@ -35,8 +41,14 @@ Banana bob;
  	}   
  	void move()
  	{
- 		x = x + (int)(Math.random()*3)-1;
- 		y = y + (int)(Math.random()*3)-1;
+ 		if (master.x > x)
+ 			x = x + (int)(Math.random()*3); //biased to right
+ 		else 
+ 			x = x + (int)(Math.random()*3)-2; //biased to left 
+ 		if (master.y > y)
+ 			y = y + (int)(Math.random()*3); //biased downward
+ 		else 
+ 			y = y + (int)(Math.random()*3)-2; //biased upward
  	}
  	void show()
  	{

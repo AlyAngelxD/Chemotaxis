@@ -5,7 +5,7 @@ boolean bananaThrown = false;
  void setup()   
  {     
  	size(500,500);   
- 	frameRate(150);
+ 	frameRate(300);
  	minions = new Clones[100];
  	for (int i = 0; i < minions.length; i++)
  	{
@@ -15,6 +15,7 @@ boolean bananaThrown = false;
  	bob = new Banana();
  }   
  void draw()   
+
  {    
  	background(0);
  	for (int i = 0; i < minions.length; i++)
@@ -24,10 +25,18 @@ boolean bananaThrown = false;
  	}
  	master.move();
  	master.show();
+ 	bob.show();
  	if (master.x == minions[0].x)
  	{
- 		bob.show();
- 		master.x = master.y = bob.x = bob.y = (int)(Math.random()*500);
+ 		bananaThrown = true;
+ 		master.x = (int)(Math.random()*500);
+ 		master.y = (int)(Math.random()*500);
+ 		bob.x = (int)(Math.random()*500);
+ 		bob.y = (int)(Math.random()*500);
+ 	}
+ 	if (bob.x == minions[0].x)
+ 	{
+ 		bananaThrown = false;
  	}
  }  
  class Clones   
@@ -41,14 +50,29 @@ boolean bananaThrown = false;
  	}   
  	void move()
  	{
- 		if (master.x > x)
- 			x = x + (int)(Math.random()*3); //biased to right
+ 		if (bananaThrown == false)
+ 		{
+ 			if (master.x > x)
+ 				x = x + (int)(Math.random()*3); //biased to right
+ 			else 
+ 				x = x + (int)(Math.random()*3)-2; //biased to left 
+ 			if (master.y > y)
+ 				y = y + (int)(Math.random()*3); //biased downward
+ 			else 
+ 				y = y + (int)(Math.random()*3)-2; //biased upward
+ 		}	
  		else 
- 			x = x + (int)(Math.random()*3)-2; //biased to left 
- 		if (master.y > y)
- 			y = y + (int)(Math.random()*3); //biased downward
- 		else 
- 			y = y + (int)(Math.random()*3)-2; //biased upward
+ 		{
+ 			if (bob.x > x)
+ 				x = x + (int)(Math.random()*3); //biased to right
+ 			else 
+ 				x = x + (int)(Math.random()*3)-2; //biased to left 
+ 			if (bob.y > y)
+ 				y = y + (int)(Math.random()*3); //biased downward
+ 			else 
+ 				y = y + (int)(Math.random()*3)-2; //biased upward
+ 		}	
+ 		
  	}
  	void show()
  	{
@@ -131,11 +155,17 @@ boolean bananaThrown = false;
  	}
  	void show()
  	{
- 		fill(255,255,0);
- 		strokeWeight(1);
- 		bezier(x+5,y,x-5,y-35,x+15,y-20,x+15,y);
- 		bezier(x+5,y,x-5,y+35,x+15,y+20,x+15,y);
- 		fill(120,60,40);
- 		ellipse(x+5,y-20,7,7);
+ 		if (bananaThrown == true)
+ 		{
+ 			fill(255,255,0);
+	 		strokeWeight(1);
+	 		bezier(x+5,y,x-5,y-35,x+15,y-20,x+15,y);
+	 		bezier(x+5,y,x-5,y+35,x+15,y+20,x+15,y);
+	 		fill(120,60,40);
+	 		ellipse(x+5,y-20,7,7);
+ 		}
+ 		else {
+ 			
+ 		}
  	}
  }
